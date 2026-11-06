@@ -2,7 +2,9 @@ package com.paulo.nader.demo;
 
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -13,13 +15,13 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller 
 public class LinkMappings {
     @GetMapping("/")
-    public String getMainPage(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<String> getMainPage(HttpServletRequest request, HttpServletResponse response) {
         //generate user cookie (if no cookie exists)
         Cookie[] userCookies = request.getCookies();
         if (userCookies!=null) {
             for (Cookie cookie:userCookies) {
                 if (cookie.getName().equals("userId")) {
-                    return "index.html";
+                    return new ResponseEntity<>("index.html", HttpStatus.OK);
                 }
             }
         }
@@ -29,6 +31,6 @@ public class LinkMappings {
         userCookie.setHttpOnly(true);
         response.addCookie(userCookie);
 
-        return "index.html";
+        return new ResponseEntity<>("index.html", HttpStatus.OK);
     }
 }

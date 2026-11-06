@@ -1,17 +1,26 @@
 package com.paulo.nader.demo;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public class PrintJob {
     private long printId;
     private String filePath;
-    private User user;
+    private String userId;
     private long estimatedPrintTime;
 
-    public PrintJob(long printId, String filePath, User user) {
+    public PrintJob(long printId, String filePath, String userId) {
         this.printId = printId;
         this.filePath = filePath;
-        this.user = user;
+        this.userId = userId;
     }
-    
+
+    //constructor without User parameter for use in API calls
+    @JsonCreator
+    public PrintJob(long printId, String filePath) {
+        this.printId = printId;
+        this.filePath = filePath;
+    }
+
     public long getPrintId() {
         return printId;
     }
@@ -24,11 +33,11 @@ public class PrintJob {
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
     public long getEstimatedPrintTime() {
         return estimatedPrintTime;
