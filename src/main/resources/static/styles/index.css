@@ -1,0 +1,64 @@
+html, body {
+    background-color: var(--bg-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.vertical-split {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.vertical-split > * {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.print-job {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--card-color);
+    padding: 0.5rem;
+    border: 2px solid var(--gray-border);
+    border-radius: 7px;
+    margin: 5px;
+    width: 15rem;
+}
+
+.print-job > * {
+    padding: 0;
+    margin: 0;
+}
+
+.fileName {
+    width: 15rem;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+#add-print-button {
+    padding: 5px 12px;
+    margin: 3px;
+    font-size: 0.925rem;
+    font-weight: 500;
+    font-family: 'Noto Sans', Tahoma, Geneva, Verdana, sans-serif;
+    border: 2px solid #bebebe;
+    border-radius: 5px;
+    background-color: var(--bright-green-button);
+    transition: background-color 0.125s ease, transform 0.1s ease;
+}
+
+#add-print-button:hover {
+    background-color: var(--bright-green-button-hover);
+}
+
+#add-print-button:active {
+    scale: 0.97;
+}
+
+.template {
+    display: none;
+}

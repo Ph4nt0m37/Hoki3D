@@ -15,13 +15,13 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller 
 public class LinkMappings {
     @GetMapping("/")
-    public ResponseEntity<String> getMainPage(HttpServletRequest request, HttpServletResponse response) {
+    public String getMainPage(HttpServletRequest request, HttpServletResponse response) {
         //generate user cookie (if no cookie exists)
         Cookie[] userCookies = request.getCookies();
         if (userCookies!=null) {
             for (Cookie cookie:userCookies) {
                 if (cookie.getName().equals("userId")) {
-                    return new ResponseEntity<>("index.html", HttpStatus.OK);
+                    return "index.html";
                 }
             }
         }
@@ -31,6 +31,6 @@ public class LinkMappings {
         userCookie.setHttpOnly(true);
         response.addCookie(userCookie);
 
-        return new ResponseEntity<>("index.html", HttpStatus.OK);
+        return "index.html";
     }
 }

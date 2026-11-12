@@ -14,10 +14,9 @@ public class PrintJob {
         this.userId = userId;
     }
 
-    //constructor without User parameter for use in API calls
+    //constructor without User parameter or printId for use in API calls since backend will handle that
     @JsonCreator
-    public PrintJob(long printId, String filePath) {
-        this.printId = printId;
+    public PrintJob(String filePath) {
         this.filePath = filePath;
     }
 

@@ -63,7 +63,7 @@ public class SLQueue<T> {
         return removed;
     }
 
-    public T getFront()
+    public T peek()
     {
         if (front == null)
         {
