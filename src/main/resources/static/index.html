@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +8,26 @@
     <link rel="stylesheet" href="styles/index.css">
     <title>Hoki3D</title>
 </head>
+
 <body>
     <div class="vertical-split">
         <div class="printer-div">
             [printer info goes here]
         </div>
-        <div id="print-queue-div">
+        <div id="print-queue-info-div">
             <h1>Print Jobs</h1>
             <button id="add-print-button">Upload Print</button>
-            <input type="file" id="stlUpload" name="stlUpload" accept=".stl" style="display:none;"/>
-            <div class="print-job template" id="print-job-template">
-                <p class="fileName" style="font-weight: 600;">File.stl</p>
-                <p class="estPrintTime" style="font-size: 0.85rem;">Est. Time: 0 hours</p>
+            <input type="file" id="stlUpload" name="stlUpload" accept=".stl" style="display:none;" />
+            <div id="print-queue-div">
+                <div class="print-job template" id="print-job-template">
+                    <p class="fileName" style="font-weight: 600;">File.stl</p>
+                    <p class="estPrintTime" style="font-size: 0.85rem;">Est. Time: 0 hours</p>
+                </div>
             </div>
+
         </div>
     </div>
 </body>
 <script type="module" src="scripts/index.js"></script>
+
 </html>

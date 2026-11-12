@@ -3,6 +3,8 @@ const printJobTemplate = document.getElementById("print-job-template");
 const addPrintButton = document.getElementById("add-print-button");
 const fileUploadBox = document.getElementById("stlUpload");
 
+loadPrintQueue();
+
 addPrintButton.addEventListener("click",()=>{
     fileUploadBox.click()
 });
@@ -17,10 +19,23 @@ fileUploadBox.addEventListener("change",()=>{
     }).then(resp=>{
         if (resp.ok) return resp.json();
     }).then(data=>{
-        const clonedPrintJob = printJobTemplate.cloneNode(true);
-        clonedPrintJob.querySelector(".fileName").textContent = fileUploadBox.files[0].name;
-        clonedPrintJob.querySelector(".estPrintTime").textContent = `Est. Time: ${data['estimatedPrintTime']} min`;
-        clonedPrintJob.classList.remove("template");
-        printQueueDiv.appendChild(clonedPrintJob);
+        loadPrintQueue();
     });
 })
+
+
+function loadPrintQueue() {
+    printQueueDiv.replaceChildren();
+    fetch("/api/get-print-queue").then(resp=>{
+        if (resp.ok) return resp.json();
+    }).then(data=>{
+        console.log(data)
+        for (const printJob of data) {
+            const clonedPrintJob = printJobTemplate.cloneNode(true);
+            clonedPrintJob.querySelector(".fileName").textContent = printJob['filePath'];
+            clonedPrintJob.querySelector(".estPrintTime").textContent = `Est. Time: ${printJob['estimatedPrintTime']} min`;
+            clonedPrintJob.classList.remove("template");
+            printQueueDiv.appendChild(clonedPrintJob);
+        }
+    });
+}
