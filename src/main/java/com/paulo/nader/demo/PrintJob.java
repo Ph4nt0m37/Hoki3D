@@ -104,6 +104,9 @@ public class PrintJob {
      * @param estimatedPrintTime the estimated print duration
      */
     public void setEstimatedPrintTime(long estimatedPrintTime) {
+        if (estimatedPrintTime < 0) {
+            throw new IllegalArgumentException("Estimated print time cannot be negative.");
+        }
         this.estimatedPrintTime = estimatedPrintTime;
     }
 }
