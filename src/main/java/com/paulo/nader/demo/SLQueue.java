@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * A singly linked FIFO queue that supports removal and lookup by value or
+ * position.
+ *
+ * @param <T> the type of elements stored in the queue
+ */
 public class SLQueue<T> {
 
     private class Node {
@@ -21,6 +27,9 @@ public class SLQueue<T> {
     private Node rear;
     private int size;
 
+    /**
+     * Creates an empty queue.
+     */
     public SLQueue() {
         front = null;
         rear = null;
@@ -28,6 +37,12 @@ public class SLQueue<T> {
     }
 
     // Adds an element to the end of the queue
+    /**
+     * Adds an element to the rear of the queue.
+     *
+     * @param obj the element to add
+     * @throws IllegalArgumentException if {@code obj} is {@code null}
+     */
     public void enqueue(T obj) {
         if (obj == null) {
             throw new IllegalArgumentException();
@@ -48,6 +63,12 @@ public class SLQueue<T> {
     }
 
     // Removes and returns the front element
+    /**
+     * Removes and returns the element at the front of the queue.
+     *
+     * @return the element removed from the queue
+     * @throws NoSuchElementException if the queue is empty
+     */
     public T dequeue() {
         if (isEmpty()) {
             throw new NoSuchElementException();
@@ -65,6 +86,12 @@ public class SLQueue<T> {
     }
 
     // Returns the front element without removing it
+    /**
+     * Returns the element at the front of the queue without removing it.
+     *
+     * @return the front element
+     * @throws NoSuchElementException if the queue is empty
+     */
     public T peek() {
         if (isEmpty()) {
             throw new NoSuchElementException();
@@ -73,15 +100,28 @@ public class SLQueue<T> {
         return front.data;
     }
 
+    /**
+     * Indicates whether the queue contains no elements.
+     *
+     * @return {@code true} if the queue is empty; otherwise, {@code false}
+     */
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns the number of elements in the queue.
+     *
+     * @return the number of elements
+     */
     public int size() {
         return size;
     }
 
     // Removes all elements from the queue
+    /**
+     * Removes all elements from the queue.
+     */
     public void clear() {
         front = null;
         rear = null;
@@ -89,6 +129,12 @@ public class SLQueue<T> {
     }
 
     // Checks whether an element is in the queue
+    /**
+     * Checks whether the queue contains the specified element.
+     *
+     * @param obj the element to search for
+     * @return {@code true} if an equal element is present; otherwise, {@code false}
+     */
     public boolean contains(T obj) {
         Node current = front;
 
@@ -103,6 +149,12 @@ public class SLQueue<T> {
     }
 
     // Removes the first occurrence of an element
+    /**
+     * Removes the first element equal to the specified object.
+     *
+     * @param obj the element to remove
+     * @return {@code true} if an element was removed; otherwise, {@code false}
+     */
     public boolean remove(T obj) {
         if (obj == null || isEmpty()) {
             return false;
@@ -133,6 +185,12 @@ public class SLQueue<T> {
     }
 
     // Removes an element at a given position (zero-based)
+    /**
+     * Removes the element at the specified zero-based position.
+     *
+     * @param position the position of the element to remove
+     * @return {@code true} if an element was removed; otherwise, {@code false}
+     */
     public boolean remove(int position) {
         if (position < 0 || position >= size) {
             return false;
@@ -160,6 +218,11 @@ public class SLQueue<T> {
     }
 
     // Returns the queue as a list in FIFO order
+    /**
+     * Creates a list containing the queue's elements in FIFO order.
+     *
+     * @return a list of the queue's elements
+     */
     public List<T> toList() {
         List<T> result = new ArrayList<>();
         Node current = front;
@@ -173,6 +236,13 @@ public class SLQueue<T> {
     }
 
     // Returns the zero-based position of an element, or -1 if not found
+    /**
+     * Finds the zero-based position of the first element equal to the specified
+     * object.
+     *
+     * @param obj the element to search for
+     * @return the element's position, or {@code -1} if it is not present
+     */
     public int getPosition(T obj) {
         Node current = front;
         int position = 0;
