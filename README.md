@@ -15,6 +15,15 @@ Our next step is to finish the MVP by completing print job submission, connectin
 
 # Code Ownership
 
+Paulo: Finish print job submission methods in PrintController and connect website submissions to the queue.
+
+Larry: Complete the remaining SLQueue methods, including getPosition(), toList(), and size(), and write tests for queue operations and positions.
+
+Phani: Complete print status handling in PrintJob and PrintStatus and write tests for status updates.
+
+Aniket: Write tests for print job submissions and invalid submissions and help with integrating the website with the backend.
+
+Group: Work together on the administrator page as a stretch goal, including the necessary changes to PrintController, User, and the website view.
 
 
 # Attribution
@@ -32,7 +41,7 @@ Our next step is to finish the MVP by completing print job submission, connectin
 | SLQueueTest.java     | Phani  | Wrote JUnit test cases to test the queue methods, including edge cases such as empty queues and missing elements.
 | User.java            | Paulo  | Wrote Code                     |
 | UserTest.java        | Phani  | Wrote JUnit test cases to test the User constructor, getters, and setter.
-| UserRole.java        |        |                                |
+| UserRole.java        | Paulo  |                                |
 
 # Gen AI Note
 
