@@ -33,7 +33,7 @@ Group: Work together on the administrator page as a stretch goal, including the 
 | LinkMappings.java    | Paulo  | Wrote code to handle website page mappings and connect the frontend to the appropriate backend pages.                   
 | PrintController.java | Paulo  | Implemented the controller to handle print job submissions and coordinate communication between the website and backend.
 | PrintJob.java        | Paulo  | Implemented the print job class, including its fields, constructors, getters, and setters.
-| PrintJobTest.java    | Aniket | Worked to test the PrintJob.java methods
+| PrintJobTest.java    | Aniket/larry | Worked to test the PrintJob.java methods
 | PrintQueue.java      | Paulo  | Implemented the print queue functionality for managing submitted print jobs.
 | PrintQueueTest.java  | Paulo  | Used GenAI to write test cases for the print queue.
 | PrintStatus.java     | Paulo  | Implemented the print status functionality to represent the current state of a print job.
