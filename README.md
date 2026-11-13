@@ -29,7 +29,11 @@ Our next step is to finish the MVP by completing print job submission, connectin
 | UserTest.java        | Phani  | Wrote JUnit test cases to test the User constructor, getters, and setter.
 | UserRole.java        |        |                                |
 
-# Gen AI Note
+# Gen AI 
+
+### GenAI Note
+
+We used ChatGPT as a tool during development to help with writing and reviewing code, creating JUnit test cases, and understanding how certain parts of the project should work. For example, GenAI was used to help generate test cases for 'PrintQueueTest.java' and to get guidance on implementing and testing the singly linked queue. We reviewed the generated suggestions and made changes as needed to fit our project requirements. The final code and implementation decisions were reviewed by our group.
 
 # How to Run
 After you run the program, go to <http://localhost:8080> to see the thin view.
