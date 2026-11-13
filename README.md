@@ -19,10 +19,10 @@ Our next step is to finish the MVP by completing print job submission, connectin
 | PrintQueue.java      | Paulo  | Wrote code                     |
 | PrintQueueTest.java  | Paulo  | Used GenAI to write test cases |
 | PrintStatus.java     | Paulo  | Wrote Code                     |
-| SLQueue.java         | Phani  | Wrote                          |
-| SLQueueTest.java     | Phani  | Wrote                          |
+| SLQueue.java         | Phani  | Implemented the generic singly linked queue and its methods for adding, removing, finding, and retrieving elements.
+| SLQueueTest.java     | Phani  | Wrote JUnit test cases to test the queue methods, including edge cases such as empty queues and missing elements.
 | User.java            | Paulo  | Wrote Code                     |
-| UserTest.java        | Phani  |                                |
+| UserTest.java        | Phani  | Wrote JUnit test cases to test the User constructor, getters, and setter.
 | UserRole.java        |        |                                |
 
 # Gen AI Note
