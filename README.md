@@ -15,24 +15,33 @@ Our next step is to finish the MVP by completing print job submission, connectin
 
 # Code Ownership
 
+Paulo: Finish print job submission methods in PrintController and connect website submissions to the queue.
+
+Larry: Complete the remaining SLQueue methods, including getPosition(), toList(), and size(), and write tests for queue operations and positions.
+
+Phani: Complete print status handling in PrintJob and PrintStatus and write tests for status updates.
+
+Aniket: Write tests for print job submissions and invalid submissions and help with integrating the website with the backend.
+
+Group: Work together on the administrator page as a stretch goal, including the necessary changes to PrintController, User, and the website view.
 
 
 # Attribution
 
 | Class                | Person | Conribution                    |
 |----------------------|--------|--------------------------------|
-| LinkMappings.java    | Paulo  | Wrote code                     |
-| PrintController.java | Paulo  | Wrote code                     |
-| PrintJob.java        | Paulo  | Wrote code                     |
-| PrintJobTest.java    |        |                                |
-| PrintQueue.java      | Paulo  | Wrote code                     |
-| PrintQueueTest.java  | Paulo  | Used GenAI to write test cases |
-| PrintStatus.java     | Paulo  | Wrote Code                     |
+| LinkMappings.java    | Paulo  | Wrote code to handle website page mappings and connect the frontend to the appropriate backend pages.                   
+| PrintController.java | Paulo  | Implemented the controller to handle print job submissions and coordinate communication between the website and backend.
+| PrintJob.java        | Paulo  | Implemented the print job class, including its fields, constructors, getters, and setters.
+| PrintJobTest.java    | Aniket/Larry | Worked to test the PrintJob.java methods
+| PrintQueue.java      | Paulo  | Implemented the print queue functionality for managing submitted print jobs.
+| PrintQueueTest.java  | Aniket | Used GenAI to write test cases for the print queue.
+| PrintStatus.java     | Paulo  | Implemented the print status functionality to represent the current state of a print job.
 | SLQueue.java         | Phani  | Implemented the generic singly linked queue and its methods for adding, removing, finding, and retrieving elements.
 | SLQueueTest.java     | Phani  | Wrote JUnit test cases to test the queue methods, including edge cases such as empty queues and missing elements.
-| User.java            | Paulo  | Wrote Code                     |
+| User.java            | Paulo  | Implemented the User class to represent users and store their information.
 | UserTest.java        | Phani  | Wrote JUnit test cases to test the User constructor, getters, and setter.
-| UserRole.java        |        |                                |
+| UserRole.java        | Paulo  | Implemented the UserRole enum to define the different roles a user can have.
 
 # Gen AI Note
 
