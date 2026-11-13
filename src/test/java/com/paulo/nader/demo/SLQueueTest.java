@@ -1,19 +1,19 @@
 
 package com.paulo.nader.demo;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SLQueueTest {
 
     private SLQueue<String> queue;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         queue = new SLQueue<String>();
     }
@@ -45,9 +45,9 @@ public class SLQueueTest {
         assertEquals("B", queue.peek());
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void testDequeueEmpty() {
-        queue.dequeue();
+        assertThrows(NoSuchElementException.class, () -> queue.dequeue());
     }
 
     @Test
@@ -59,9 +59,9 @@ public class SLQueueTest {
         assertEquals(2, queue.size());
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void testPeekEmpty() {
-        queue.peek();
+        assertThrows(NoSuchElementException.class, () -> queue.peek());
     }
 
     @Test
