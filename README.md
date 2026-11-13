@@ -15,7 +15,6 @@ Our next step is to finish the MVP by completing print job submission, connectin
 | LinkMappings.java    | Paulo  | Wrote code                     |
 | PrintController.java | Paulo  | Wrote code                     |
 | PrintJob.java        | Paulo  | Wrote code                     |
-| PrintJobTest.java    |        |                                |
 | PrintQueue.java      | Paulo  | Wrote code                     |
 | PrintQueueTest.java  | Paulo  | Used GenAI to write test cases |
 | PrintStatus.java     | Paulo  | Wrote Code                     |
