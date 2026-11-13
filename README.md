@@ -31,7 +31,7 @@ Our next step is to finish the MVP by completing print job submission, connectin
 
 # Gen AI Note
 
-We used ChatGPT as a tool during development to help with writing and reviewing code, creating JUnit test cases, and understanding how certain parts of the project should work. For example, GenAI was used to help generate test cases for 'PrintQueueTest.java' and to get guidance on implementing and testing the singly linked queue. We reviewed the generated suggestions and made changes as needed to fit our project requirements. The final code and implementation decisions were reviewed by our group.
+We used AI as a tool during development to help with writing and reviewing code, creating JUnit test cases, and understanding how certain parts of the project should work. For example, GenAI was used to help generate test cases for 'PrintQueueTest.java' and to get guidance on implementing and testing the singly linked queue. Along with this, we used AI to help understand why certain JUnit methods were not defined. We reviewed the generated suggestions and made changes as needed to fit our project requirements. The final code and implementation decisions were reviewed by our group.
 
 # How to Run
 After you run the program, go to <http://localhost:8080> to see the thin view.
