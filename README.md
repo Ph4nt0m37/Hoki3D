@@ -8,6 +8,10 @@ During development, we made a few changes to the original specification. Our 'Us
 
 Our next step is to finish the MVP by completing print job submission, connecting the website to the queue, and displaying each job's queue position, estimated wait time, and print status. This will involve finishing the submission methods in PrintController, using methods such as getPosition(), toList(), and size() in SLQueue, and completing the status handling in PrintJob and PrintStatus. After that, we need to add tests for submitting print jobs, checking queue positions, updating print statuses, and handling invalid submissions. One additional feature we plan to work on is an administrator page that allows admins to manage the print queue. This would require changes to PrintController, User, and the website's view, while SLQueue should not need to change because it already has the necessary queue operations. We plan to keep administrator features and authentication as stretch goals, but will not implement actual 3D printer integration at this stage.
 
+# Code Ownership
+
+
+
 # Attribution
 
 | Class                | Person | Conribution                    |
