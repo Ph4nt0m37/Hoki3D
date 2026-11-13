@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -41,6 +42,10 @@ public class PrintController {
 
     @PostMapping("/api/add-print")
     public ResponseEntity<PrintJob> getNextPrint(@RequestParam MultipartFile file, @CookieValue String userId) {
+        //validate that the file is an STL
+        String[] splitName = file.getOriginalFilename().split("\\.");
+        if (!splitName[splitName.length - 1].equalsIgnoreCase("STL")) return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+
         String uploadedFilePath = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             String uploadedFilesFolderPath = "src\\main\\resources\\uploadedFiles\\".replace("\\", File.separator);
