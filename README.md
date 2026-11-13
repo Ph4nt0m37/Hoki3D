@@ -19,10 +19,10 @@ During development, we made a few changes to the original specification. Our 'Us
 | PrintQueue.java      | Paulo  | Wrote code                     |
 | PrintQueueTest.java  | Paulo  | Used GenAI to write test cases |
 | PrintStatus.java     | Paulo  | Wrote Code                     |
-| SLQueue.java         |        | Wrote                          |
-| SLQueueTest.java     |        | Wrote                          |
+| SLQueue.java         | Phani  | Wrote                          |
+| SLQueueTest.java     | Phani  | Wrote                          |
 | User.java            | Paulo  | Wrote Code                     |
-| UserTest.java        |        |                                |
+| UserTest.java        | Phani  |                                |
 | UserRole.java        |        |                                |
 
 # Gen AI Note
