@@ -1,6 +1,6 @@
 # Hoki3D
 
-## Reflection
+# Reflection
 
 During development, we made a few changes to the original specification. Our 'User' class uses a 'String' for the user ID instead of a 'long', and 'PrintJob' stores a user ID rather than a 'User' object. We also added methods to 'SLQueue', such as 'remove()', 'contains()', and 'getPosition()', to make managing print jobs easier. We created JUnit tests to check that our queue and user classes work correctly, including edge cases like empty queues and missing elements. The model can operate independently from the website because it handles the data and queue operations without depending on the view. We figured out how to implement the singly linked queue and organize the backend, but connecting the application to an actual 3D printer and tracking print progress are still unresolved. Printer integration, failed print handling, and the administrator features are not fully implemented yet.
 
@@ -29,9 +29,7 @@ Our next step is to finish the MVP by completing print job submission, connectin
 | UserTest.java        | Phani  | Wrote JUnit test cases to test the User constructor, getters, and setter.
 | UserRole.java        |        |                                |
 
-# Gen AI 
-
-### GenAI Note
+# Gen AI Note
 
 We used ChatGPT as a tool during development to help with writing and reviewing code, creating JUnit test cases, and understanding how certain parts of the project should work. For example, GenAI was used to help generate test cases for 'PrintQueueTest.java' and to get guidance on implementing and testing the singly linked queue. We reviewed the generated suggestions and made changes as needed to fit our project requirements. The final code and implementation decisions were reviewed by our group.
 
