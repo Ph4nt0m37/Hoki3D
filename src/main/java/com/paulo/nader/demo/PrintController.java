@@ -57,4 +57,14 @@ public class PrintController {
         PrintQueue.add(printJob);
         return new ResponseEntity<>(printJob, HttpStatus.OK);
     }
+
+    @PostMapping("/api/remove-print")
+    public ResponseEntity<PrintJob> removePrint(String printId) {
+        //TODO: handle removing a print
+    }
+
+    @PostMapping("/api/start-next-print")
+    public ResponseEntity<PrintJob> startPrint(String printId) {
+        //TODO: handle removing a print
+    }
 }
