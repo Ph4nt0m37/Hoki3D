@@ -14,6 +14,8 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 0;
+    flex-basis: 0;
 }
 
 .print-job {
@@ -61,4 +63,17 @@ html, body {
 
 .template {
     display: none;
+}
+
+#printer-img {
+    height: 20rem;
+    width: 20rem;
+    padding: 0;
+    margin: 0;
+}
+
+.printer-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

@@ -5,6 +5,7 @@ package com.paulo.nader.demo;
  * Provides static access to the shared queue of print jobs.
  */
 public class PrintQueue {
+    private static PrintJob currentPrint;
     private static SLQueue<PrintJob> queue = new SLQueue<>();
 
     /**

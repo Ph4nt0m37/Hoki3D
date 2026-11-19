@@ -24,8 +24,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class PrintController {
-    private PrintJob currentPrint;
-
     @GetMapping("/api/get-print-queue")
     public ResponseEntity<List<PrintJob>> getPrintQueue() {
         return new ResponseEntity<>(PrintQueue.getPrintQueue().toList(), HttpStatus.OK);
@@ -41,7 +39,7 @@ public class PrintController {
     }
 
     @PostMapping("/api/add-print")
-    public ResponseEntity<PrintJob> getNextPrint(@RequestParam MultipartFile file, @CookieValue String userId) {
+    public ResponseEntity<PrintJob> addPrint(@RequestParam MultipartFile file, @CookieValue String userId) {
         //validate that the file is an STL
         String[] splitName = file.getOriginalFilename().split("\\.");
         if (!splitName[splitName.length - 1].equalsIgnoreCase("STL")) return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
