@@ -72,6 +72,14 @@ public class PrintController {
 
     @PostMapping("/api/start-next-print")
     public ResponseEntity<PrintJob> startPrint() {
-        //TODO: handle starting next print (use PrintQueue.java)
+        try {
+            PrintJob nextPrint = printQueue.getPrintQueue().peek();
+            if (printQueue.remove(nextPrint)) {
+                return new ResponseEntity<>(nextPrint, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
