@@ -1,6 +1,7 @@
 package com.paulo.nader.demo;
 
 import java.sql.SQLException;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class PrintQueue {
         this.databaseController = databaseController;
         try {
             queue = databaseController.getQueuedPrints();
+            currentPrint = databaseController.getCurrentPrint();
         }catch(SQLException e) {
             System.err.println("Something went wrong loading the print queue from the database. ");
             e.printStackTrace();
@@ -71,6 +73,27 @@ public class PrintQueue {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public PrintJob startNextPrint() throws NoSuchElementException {
+        try {
+            // save the current print as completed, then get next current print
+            if (currentPrint != null) {
+                currentPrint.setStatus(PrintStatus.COMPLETED);
+                databaseController.saveCompletedPrint(currentPrint);
+            }
+
+            currentPrint = queue.dequeue();
+            currentPrint.setStatus(PrintStatus.PRINTING);
+            databaseController.saveCompletedPrint(currentPrint);
+            databaseController.removePrintJob(currentPrint.getPrintId());
+
+            return currentPrint;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
         }
     }
 }

@@ -10,6 +10,7 @@ public class PrintJob {
     private String filePath;
     private String userId;
     private long estimatedPrintTime;
+    private PrintStatus status;
 
     /**
      * Creates a print job with its identifier, file path, and submitting user.
@@ -21,6 +22,14 @@ public class PrintJob {
     public PrintJob(long printId, String filePath, String userId) {
         this.printId = printId;
         this.filePath = filePath;
+        this.userId = userId;
+        this.status = PrintStatus.WAITING;
+    }
+
+    public PrintJob(long printId, String filePath, PrintStatus status, String userId) {
+        this.printId = printId;
+        this.filePath = filePath;
+        this.status = status;
         this.userId = userId;
     }
 
@@ -109,4 +118,14 @@ public class PrintJob {
         }
         this.estimatedPrintTime = estimatedPrintTime;
     }
+
+    public PrintStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PrintStatus status) {
+        this.status = status;
+    }
+
+    
 }

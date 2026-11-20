@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -27,6 +28,9 @@ import jakarta.servlet.http.HttpServletRequest;
 public class PrintController {
     @Autowired
     private PrintQueue printQueue;
+
+    @Autowired
+    private DatabaseController databaseController;
 
     @GetMapping("/api/get-print-queue")
     public ResponseEntity<List<PrintJob>> getPrintQueue() {
@@ -73,12 +77,44 @@ public class PrintController {
     @PostMapping("/api/start-next-print")
     public ResponseEntity<PrintJob> startPrint() {
         try {
-            PrintJob nextPrint = printQueue.getPrintQueue().peek();
-            if (printQueue.remove(nextPrint)) {
-                return new ResponseEntity<>(nextPrint, HttpStatus.OK);
-            }
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            PrintJob nextPrint = printQueue.startNextPrint();
+            return new ResponseEntity<>(nextPrint, HttpStatus.OK);
         } catch (NoSuchElementException e) {
+            //No more prints in the queue. No need to freak out, just return nothing.
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/api/get-user-id")
+    public ResponseEntity<String> getUserId(@CookieValue String userId) {
+        return new ResponseEntity<>(userId, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/get-completed-prints")
+    public ResponseEntity<List<PrintJob>> getCompletedPrints(@CookieValue String userId) {
+        try {
+            return new ResponseEntity<>(databaseController.getCompletedPrints(userId), HttpStatus.OK);
+        } catch (SQLException e) {
+            System.err.println("Something went wrong fetching completed prints from database.");
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/api/get-current-print")
+    public ResponseEntity<PrintJob> getCurrentPrint() {
+        try {
+            PrintJob currentPrint = databaseController.getCurrentPrint();
+            if (currentPrint != null) {
+                String uploadedFilesFolderPath = "src\\main\\resources\\uploadedFiles\\".replace("\\", File.separator);
+                File printFile = new File(uploadedFilesFolderPath+currentPrint.getFilePath());
+                currentPrint.setEstimatedPrintTime((long)(printFile.length()*(3/5000.0)));
+            }
+            
+            return new ResponseEntity<>(currentPrint, HttpStatus.OK);
+        } catch (SQLException e) {
+            System.err.println("Something went wrong fetching completed prints from database.");
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

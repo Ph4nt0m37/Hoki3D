@@ -12,13 +12,21 @@
 <body>
     <div class="vertical-split">
         <div class="printer-div">
-            <img src="images/printer.gif" id="printer-img">
-            <h3 id="printin-status">Printing...</h3>
-            <div class="print-job" id="printing-file">
+            <img src="images/frozen_printer.gif" id="printer-img">
+            <h3 id="printing-status">Idle</h3>
+            <div class="print-job template" id="printing-file">
                 <p class="fileName" style="font-weight: 600;">File.stl</p>
                 <p class="estPrintTime" style="font-size: 0.85rem;">Time Remaining: 0 hours</p>
             </div>
             <button id="start-print-button">Start Next Print</button>
+            <h3 style="margin-top: 1rem;">Your Prints</h3>
+            <div id="your-prints-div">
+                <div class="print-job template" id="your-print-template">
+                    <p class="fileName" style="font-weight: 600;">File.stl</p>
+                    <p class="estPrintTime" style="font-size: 0.85rem;">Est. Time: 0 hours</p>
+                    <p class="print-status" style="font-size: 0.85rem;">Queue Position: 0</p>
+                </div>
+            </div>
         </div>
         <div id="print-queue-info-div">
             <h1>Print Jobs</h1>
