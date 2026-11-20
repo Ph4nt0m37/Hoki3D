@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,15 +25,18 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class PrintController {
+    @Autowired
+    private PrintQueue printQueue;
+
     @GetMapping("/api/get-print-queue")
     public ResponseEntity<List<PrintJob>> getPrintQueue() {
-        return new ResponseEntity<>(PrintQueue.getPrintQueue().toList(), HttpStatus.OK);
+        return new ResponseEntity<>(printQueue.getPrintQueue().toList(), HttpStatus.OK);
     }
 
     @GetMapping("/api/get-next-print")
     public ResponseEntity<PrintJob> getNextPrint() {
         try {
-            return new ResponseEntity<>(PrintQueue.getPrintQueue().peek(), HttpStatus.OK);
+            return new ResponseEntity<>(printQueue.getPrintQueue().peek(), HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -54,8 +58,11 @@ public class PrintController {
         }
         PrintJob printJob = new PrintJob((long) (Math.random() * 9999999999l), uploadedFilePath, userId);
         printJob.setEstimatedPrintTime((long)(file.getSize()*(3/5000.0)));
-        PrintQueue.add(printJob);
-        return new ResponseEntity<>(printJob, HttpStatus.OK);
+        if (printQueue.add(printJob)) {
+            return new ResponseEntity<>(printJob, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/api/remove-print")

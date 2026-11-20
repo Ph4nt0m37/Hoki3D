@@ -3,6 +3,9 @@ const printJobTemplate = document.getElementById("print-job-template");
 const addPrintButton = document.getElementById("add-print-button");
 const fileUploadBox = document.getElementById("stlUpload");
 
+const printingFileDiv = document.getElementById("printing-file");
+const startNextPrintButton = document.getElementById("start-print-button");
+
 loadPrintQueue();
 
 addPrintButton.addEventListener("click",()=>{
@@ -39,3 +42,15 @@ function loadPrintQueue() {
         }
     });
 }
+
+startNextPrintButton.addEventListener("click",()=>{
+    fetch(`/api/start-next-print`,{
+        method: "POST",
+    }).then(resp=>{
+        if (resp.ok) return resp.json();
+    }).then(printJob=>{
+        printingFileDiv.querySelector(".fileName").textContent = printJob['filePath'];
+        printingFileDiv.querySelector(".estPrintTime").textContent = `Time Remaining: ${printJob['estimatedPrintTime']} min`;
+        loadPrintQueue();
+    });
+});

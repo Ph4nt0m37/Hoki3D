@@ -1,18 +1,31 @@
 package com.paulo.nader.demo;
 
-//Singleton design pattern
+import java.sql.SQLException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  * Provides static access to the shared queue of print jobs.
  */
+@Service
 public class PrintQueue {
-    private static PrintJob currentPrint;
-    private static SLQueue<PrintJob> queue = new SLQueue<>();
+    private PrintJob currentPrint;
+    private SLQueue<PrintJob> queue = new SLQueue<>();
+
+    private DatabaseController databaseController; //Spring will autoinject databaseController
 
     /**
      * Initializes the queue and prevents instances from being created.
      */
-    private PrintQueue() {
-        queue = new SLQueue<>();
+    public PrintQueue(DatabaseController databaseController) {
+        this.databaseController = databaseController;
+        try {
+            queue = databaseController.getQueuedPrints();
+        }catch(SQLException e) {
+            System.err.println("Something went wrong loading the print queue from the database. ");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -20,7 +33,7 @@ public class PrintQueue {
      *
      * @return the live queue of print jobs
      */
-    public static SLQueue<PrintJob> getPrintQueue() {
+    public SLQueue<PrintJob> getPrintQueue() {
         return queue;
     }
 
@@ -30,8 +43,17 @@ public class PrintQueue {
      * @param job the print job to add
      * @throws IllegalArgumentException if {@code job} is {@code null}
      */
-    public static void add(PrintJob job) {
-        queue.enqueue(job);
+    public boolean add(PrintJob job) {
+        try {
+            databaseController.savePrintJob(job);
+            queue.enqueue(job);
+
+            return true;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -39,7 +61,16 @@ public class PrintQueue {
      *
      * @param job the print job to remove
      */
-    public static void remove(PrintJob job) {
-        queue.remove(job);
+    public boolean remove(PrintJob job) {
+        try {
+            databaseController.removePrintJob(job.getPrintId());
+            queue.remove(job);
+
+            return true;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
     }
 }
