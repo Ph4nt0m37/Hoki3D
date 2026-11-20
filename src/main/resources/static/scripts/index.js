@@ -93,6 +93,9 @@ function loadPrintQueues() {
 
             queuePos++;
         }
+
+        const isQueueEmpty = (data.length===0)
+        startNextPrintButton.disabled = isQueueEmpty;
     });
 }
 
