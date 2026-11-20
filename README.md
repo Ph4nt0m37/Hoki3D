@@ -36,14 +36,14 @@ In our 3 minute demo, we begin by showing the UI as a regular user. We will uplo
 Paulo: Add print settings feature. Also work on adding admin view
 Larry: 
 Phani: Add the required test cases for the print settings and the admin view
-Aniket: 
+Aniket: Work on admin view
 
 # Attribution
 
 | Class                   | Person       | Conribution                               |
 |-------------------------|--------------|-------------------------------------------|
 | DatabaseController.java | Paulo        | Wrote code                                |
-| PrintController.java    | Paulo, Phani | Paulo: Added methods Phani: Added methods |
+| PrintController.java    | Aniket | Implemented methods |
 | PrintQueue.java         | Paulo        | Wrote new methods for starting print      |
 | DatabaseControllerTest.java | Phani    | Added the test methods for the DatabaseController class|
 | PrintControllerTest.java    | Phani    | Added the test methods for the PrintController class   |
