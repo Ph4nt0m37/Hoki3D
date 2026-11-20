@@ -71,7 +71,27 @@ public class PrintController {
 
     @PostMapping("/api/remove-print")
     public ResponseEntity<?> removePrint(String printId) {
-        //TODO: handle removing a print
+        if (printId == null || printId.isBlank()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        final long id;
+        try {
+            id = Long.parseLong(printId);
+        } catch (NumberFormatException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        for (PrintJob printJob : printQueue.getPrintQueue().toList()) {
+            if (printJob.getPrintId() == id) {
+                if (printQueue.remove(printJob)) {
+                    return new ResponseEntity<>(printJob, HttpStatus.OK);
+                }
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/api/start-next-print")
