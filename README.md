@@ -5,44 +5,47 @@ After you run the program, go to <http://localhost:8080> to see the thin view.
 
 Then, click "Upload Print" and upload an STL file. You should then see the print job be added to the queue.
 
-# Reflection
+If you click "Start Next Print" you can start the next print.
 
-During development, we made a few changes to the original specification. Our 'User' class uses a 'String' for the user ID instead of a 'long', and 'PrintJob' stores a user ID rather than a 'User' object. We also added methods to 'SLQueue', such as 'remove()', 'contains()', and 'getPosition()', to make managing print jobs easier. We created JUnit tests to check that our queue and user classes work correctly, including edge cases like empty queues and missing elements. The model can operate independently from the website because it handles the data and queue operations without depending on the view. We figured out how to implement the singly linked queue and organize the backend, but connecting the application to an actual 3D printer and tracking print progress are still unresolved. Printer integration, failed print handling, and the administrator features are not fully implemented yet.
+# Reflection
+For this deliverable, we added the ability to start prints and view the statuses of prints. Instead of just uploading prints, you can now start prints and they move through the queue.
+
+### How did your design absorb the change?
+For this deliverable, we primarily modified the PrintController and PrintQueue classes to be able to start prints and show current prints. We also added the DatabaseController class to store the print queue persistently.
+
+### Did the change cross the model/view line?
+Both the view and model only interact with each other through the PrintController class which acts as a controller between them. The view makes REST requests to the controller, who can then relay information from the model back to the view.
+
+### What changed from your D3 plan?
+The D3 plan did not include adding persistent data storage through a database. We added a database so that queue information does not get lost when re-running the program.
+
+### What doesn't work yet?
+You can't specify print settings yet and we haven't been able to add an admin view yet. We are also missing a couple of test cases for some of our classes.
 
 # Next Steps
+### What is left for the final build?
+We need to add the ability to specify print settings. We also need to add some test cases. If we have time, we also want to add the admin view.
 
-Our next step is to finish the MVP by completing print job submission, connecting the website to the queue, and displaying each job's queue position, estimated wait time, and print status. This will involve finishing the submission methods in PrintController, using methods such as getPosition(), toList(), and size() in SLQueue, and completing the status handling in PrintJob and PrintStatus. After that, we need to add tests for submitting print jobs, checking queue positions, updating print statuses, and handling invalid submissions. One additional feature we plan to work on is an administrator page that allows admins to manage the print queue. This would require changes to PrintController, User, and the website's view, while SLQueue should not need to change because it already has the necessary queue operations. We plan to keep administrator features and authentication as stretch goals, but will not implement actual 3D printer integration at this stage.
+### Which stretch goals are you committing to, and which are you dropping?
+We still want to be able to add the admin view, but if we run out of time we may have to make it a lot smaller in scope. For example, we initially wanted admins to be able to move prints around in the queue and change print settings. These may take a while to implement, so we might only be able to add the ability to start or cancel prints.
 
-# Code Ownership
+### What will your 3-minute demo show?
+In our 3 minute demo, we begin by showing the UI as a regular user. We will upload 2 files and show them appearing in the queue. Then, we will switch to the admin view and start the first print. We will then switch back to the regular user view to show that our print is now printing and we can see its progress. Finally, we will switch back to the admin view to show us cancelling a print.
 
-Paulo: Finish print job submission methods in PrintController and connect website submissions to the queue.
-
-Larry: Complete the remaining SLQueue methods, including getPosition(), toList(), and size(), and write tests for queue operations and positions.
-
-Phani: Complete print status handling in PrintJob and PrintStatus and write tests for status updates.
-
-Aniket: Write tests for print job submissions and invalid submissions and help with integrating the website with the backend.
-
-Group: Work together on the administrator page as a stretch goal, including the necessary changes to PrintController, User, and the website view.
-
+### Who does what?
+Paulo: Add print settings feature. Also work on adding admin view
+Larry: 
+Phani: 
+Aniket: 
 
 # Attribution
 
-| Class                | Person | Conribution                    |
-|----------------------|--------|--------------------------------|
-| LinkMappings.java    | Paulo  | Wrote code to handle website page mappings and connect the frontend to the appropriate backend pages.                   
-| PrintController.java | Paulo  | Implemented the controller to handle print job submissions and coordinate communication between the website and backend.
-| PrintJob.java        | Paulo  | Implemented the print job class, including its fields, constructors, getters, and setters.
-| PrintJobTest.java    | Aniket/Larry | Worked to test the PrintJob.java methods; Used AI to resolve testing issues
-| PrintQueue.java      | Paulo  | Implemented the print queue functionality for managing submitted print jobs.
-| PrintQueueTest.java  | Aniket | Used GenAI to write test cases for the print queue.
-| PrintStatus.java     | Paulo  | Implemented the print status functionality to represent the current state of a print job.
-| SLQueue.java         | Phani  | Implemented the generic singly linked queue and its methods for adding, removing, finding, and retrieving elements.
-| SLQueueTest.java     | Phani  | Wrote JUnit test cases to test the queue methods, including edge cases such as empty queues and missing elements.
-| User.java            | Paulo  | Implemented the User class to represent users and store their information.
-| UserTest.java        | Phani  | Wrote JUnit test cases to test the User constructor, getters, and setter.
-| UserRole.java        | Paulo  | Implemented the UserRole enum to define the different roles a user can have.
+| Class                   | Person       | Conribution                               |
+|-------------------------|--------------|-------------------------------------------|
+| DatabaseController.java | Paulo        | Wrote code                                |
+| PrintController.java    | Paulo, Phani | Paulo: Added methods Phani: Added methods |
+| PrintQueue.java         | Paulo        | Wrote new methods for starting print      |
 
 # Gen AI Note
 
-We used AI as a tool during development to help with writing and reviewing code, creating JUnit test cases, and understanding how certain parts of the project should work. For example, GenAI was used to help generate test cases for 'PrintQueueTest.java' and to get guidance on implementing and testing the singly linked queue. Along with this, we used AI to help understand why certain JUnit methods were not defined. We reviewed the generated suggestions and made changes as needed to fit our project requirements. The final code and implementation decisions were reviewed by our group.
+We used AI as a tool during development to help fixing bugs, creating JUnit test cases, and understanding how certain parts of the project should work. For example, GenAI was used to solve issues with connecting SQLite, as it would often crash the program. It was also used to suggest fixes for strange HTML formatting which was difficult to fix.
